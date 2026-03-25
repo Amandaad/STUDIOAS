@@ -1,0 +1,1137 @@
+<!doctype html>
+<html lang="pt-BR" class="h-full">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Amanda Simplício — Estética e Beleza</title>
+  <script src="/_sdk/element_sdk.js"></script>
+  <script src="https://cdn.tailwindcss.com/3.4.17"></script>
+  <script src="https://cdn.jsdelivr.net/npm/lucide@0.263.0/dist/umd/lucide.min.js"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&amp;family=Jost:wght@300;400;500;600&amp;display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #0f0d0c;
+      --surface: #1c1917;
+      --gold: #c9a96e;
+      --gold-light: #e2c99a;
+      --text: #f0ebe3;
+      --muted: #8a7f74;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html, body {
+      height: 100%;
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Jost', sans-serif;
+      scroll-behavior: smooth;
+    }
+
+    .site-wrapper {
+      width: 100%;
+      min-height: 100%;
+      overflow-x: hidden;
+    }
+
+    h1, h2, h3, .serif {
+      font-family: 'Cormorant Garamond', serif;
+    }
+
+    /* NAV */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1.2rem 4rem;
+      background: linear-gradient(to bottom, rgba(15,13,12,0.98), rgba(15,13,12,0));
+      transition: background 0.3s;
+    }
+    nav.scrolled {
+      background: rgba(15,13,12,0.97);
+      border-bottom: 1px solid rgba(201,169,110,0.15);
+    }
+    .nav-logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.6rem;
+      font-weight: 300;
+      letter-spacing: 0.1em;
+      color: var(--gold);
+    }
+    .nav-logo span { font-weight: 600; }
+    .nav-links {
+      display: flex;
+      gap: 2.5rem;
+      list-style: none;
+    }
+    .nav-links a {
+      font-size: 0.78rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--text);
+      text-decoration: none;
+      opacity: 0.75;
+      transition: opacity 0.2s, color 0.2s;
+    }
+    .nav-links a:hover { opacity: 1; color: var(--gold); }
+    .nav-cta {
+      font-size: 0.78rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      border: 1px solid var(--gold);
+      color: var(--gold);
+      padding: 0.55rem 1.4rem;
+      text-decoration: none;
+      transition: background 0.2s, color 0.2s;
+    }
+    .nav-cta:hover { background: var(--gold); color: var(--bg); }
+    .nav-mobile-toggle { display: none; cursor: pointer; color: var(--text); }
+    .nav-mobile-menu {
+      display: none;
+      flex-direction: column;
+      gap: 0;
+      background: rgba(15,13,12,0.98);
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      z-index: 99;
+      align-items: center;
+      justify-content: center;
+    }
+    .nav-mobile-menu.open { display: flex; }
+    .nav-mobile-menu a {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2.2rem;
+      font-weight: 300;
+      letter-spacing: 0.06em;
+      color: var(--text);
+      text-decoration: none;
+      padding: 0.7rem 0;
+      transition: color 0.2s;
+    }
+    .nav-mobile-menu a:hover { color: var(--gold); }
+    .mobile-close {
+      position: absolute;
+      top: 1.4rem; right: 1.6rem;
+      cursor: pointer; color: var(--muted);
+    }
+
+    /* HERO */
+    .hero {
+      position: relative;
+      width: 100%;
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+    .hero-bg {
+      position: absolute; inset: 0;
+      background:
+        radial-gradient(ellipse at 70% 40%, rgba(201,169,110,0.08) 0%, transparent 60%),
+        radial-gradient(ellipse at 20% 80%, rgba(201,169,110,0.05) 0%, transparent 50%),
+        linear-gradient(160deg, #1a1512 0%, #0f0d0c 50%, #0d0b0a 100%);
+    }
+    .hero-lines {
+      position: absolute; inset: 0;
+      background-image:
+        linear-gradient(rgba(201,169,110,0.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(201,169,110,0.04) 1px, transparent 1px);
+      background-size: 60px 60px;
+    }
+    .hero-circle {
+      position: absolute;
+      right: 8%;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 420px;
+      height: 420px;
+      border-radius: 50%;
+      border: 1px solid rgba(201,169,110,0.15);
+    }
+    .hero-circle::before {
+      content: '';
+      position: absolute;
+      inset: 20px;
+      border-radius: 50%;
+      border: 1px solid rgba(201,169,110,0.08);
+    }
+    .hero-circle::after {
+      content: '';
+      position: absolute;
+      inset: 60px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(201,169,110,0.07) 0%, transparent 70%);
+    }
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      max-width: 700px;
+      padding: 0 2rem;
+      text-align: center;
+    }
+    .hero-eyebrow {
+      font-size: 0.72rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 1.5rem;
+      display: block;
+    }
+    .hero-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(3.2rem, 7vw, 6rem);
+      font-weight: 300;
+      line-height: 1.05;
+      color: var(--text);
+      margin-bottom: 1.6rem;
+      letter-spacing: 0.02em;
+    }
+    .hero-title em {
+      font-style: italic;
+      color: var(--gold);
+    }
+    .hero-subtitle {
+      font-size: 0.95rem;
+      font-weight: 300;
+      color: var(--muted);
+      letter-spacing: 0.05em;
+      margin-bottom: 2.8rem;
+      line-height: 1.7;
+    }
+    .hero-btns {
+      display: flex;
+      gap: 1rem;
+      align-items: center;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+    .btn-primary {
+      background: var(--gold);
+      color: var(--bg);
+      padding: 0.9rem 2.4rem;
+      font-size: 0.78rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      text-decoration: none;
+      font-weight: 500;
+      transition: background 0.2s, transform 0.2s;
+      display: inline-block;
+    }
+    .btn-primary:hover { background: var(--gold-light); transform: translateY(-1px); }
+    .btn-ghost {
+      border: 1px solid rgba(201,169,110,0.4);
+      color: var(--gold);
+      padding: 0.9rem 2.4rem;
+      font-size: 0.78rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      text-decoration: none;
+      transition: border-color 0.2s, background 0.2s;
+      display: inline-block;
+    }
+    .btn-ghost:hover { border-color: var(--gold); background: rgba(201,169,110,0.05); }
+    .hero-scroll {
+      position: absolute;
+      bottom: 2.5rem;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.5rem;
+      opacity: 0.4;
+      font-size: 0.65rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--text);
+    }
+    .scroll-line {
+      width: 1px;
+      height: 40px;
+      background: linear-gradient(to bottom, var(--gold), transparent);
+      animation: scrollPulse 2s ease-in-out infinite;
+    }
+    @keyframes scrollPulse {
+      0%, 100% { opacity: 0.4; transform: scaleY(1); }
+      50% { opacity: 1; transform: scaleY(1.1); }
+    }
+
+    /* SECTION SHARED */
+    section { padding: 6rem 4rem; }
+    .section-eyebrow {
+      font-size: 0.7rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 1rem;
+      display: block;
+    }
+    .section-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2rem, 4vw, 3.2rem);
+      font-weight: 300;
+      line-height: 1.15;
+      margin-bottom: 1.2rem;
+    }
+    .section-divider {
+      width: 50px;
+      height: 1px;
+      background: var(--gold);
+      margin-bottom: 1.5rem;
+    }
+    .section-body {
+      font-size: 0.95rem;
+      color: var(--muted);
+      line-height: 1.8;
+      font-weight: 300;
+    }
+
+    /* SOBRE */
+    .about-grid {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5rem;
+      align-items: center;
+    }
+    .about-visual {
+      position: relative;
+      height: 480px;
+    }
+    .about-card {
+      position: absolute;
+      background: var(--surface);
+      border: 1px solid rgba(201,169,110,0.12);
+    }
+    .about-card-main {
+      top: 0; left: 0;
+      width: 75%;
+      height: 85%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+    .about-card-main-inner {
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(135deg, #1c1917 0%, #2a2520 50%, #1c1917 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 5rem;
+      opacity: 0.3;
+      color: var(--gold);
+      letter-spacing: 0.05em;
+    }
+    .about-card-accent {
+      bottom: 0; right: 0;
+      width: 55%;
+      height: 45%;
+      background: linear-gradient(135deg, rgba(201,169,110,0.1), rgba(201,169,110,0.04));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .about-stat {
+      text-align: center;
+    }
+    .about-stat-num {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 3rem;
+      font-weight: 300;
+      color: var(--gold);
+      line-height: 1;
+    }
+    .about-stat-label {
+      font-size: 0.7rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-top: 0.3rem;
+    }
+    .about-gold-line {
+      position: absolute;
+      top: 30%;
+      right: 15%;
+      width: 1px;
+      height: 30%;
+      background: linear-gradient(to bottom, transparent, var(--gold), transparent);
+      opacity: 0.3;
+    }
+
+    /* SERVIÇOS */
+    #servicos { background: var(--surface); }
+    .services-grid {
+      max-width: 1100px;
+      margin: 3rem auto 0;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2px;
+    }
+    .service-card {
+      background: var(--bg);
+      padding: 2.5rem;
+      border: 1px solid rgba(201,169,110,0.08);
+      transition: border-color 0.3s, background 0.3s;
+      cursor: default;
+    }
+    .service-card:hover {
+      border-color: rgba(201,169,110,0.3);
+      background: linear-gradient(135deg, rgba(201,169,110,0.04), var(--bg));
+    }
+    .service-icon {
+      width: 44px;
+      height: 44px;
+      border: 1px solid rgba(201,169,110,0.3);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 1.5rem;
+      color: var(--gold);
+    }
+    .service-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.4rem;
+      font-weight: 400;
+      margin-bottom: 0.8rem;
+      letter-spacing: 0.02em;
+    }
+    .service-desc {
+      font-size: 0.85rem;
+      color: var(--muted);
+      line-height: 1.75;
+      font-weight: 300;
+    }
+    .service-price {
+      margin-top: 1.5rem;
+      font-size: 0.7rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--gold);
+    }
+
+    /* EQUIPE */
+    .team-header {
+      max-width: 1100px;
+      margin: 0 auto;
+      text-align: center;
+      margin-bottom: 3.5rem;
+    }
+    .team-grid {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
+    }
+    .team-card {
+      text-align: center;
+    }
+    .team-photo {
+      width: 100%;
+      aspect-ratio: 3/4;
+      background: var(--surface);
+      border: 1px solid rgba(201,169,110,0.1);
+      margin-bottom: 1.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .team-photo-inner {
+      font-size: 4rem;
+      opacity: 0.25;
+    }
+    .team-photo-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(15,13,12,0.7) 0%, transparent 50%);
+    }
+    .team-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.3rem;
+      font-weight: 400;
+      margin-bottom: 0.3rem;
+    }
+    .team-role {
+      font-size: 0.7rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gold);
+    }
+
+    /* DEPOIMENTOS */
+    #depoimentos { background: var(--surface); }
+    .testimonials-inner {
+      max-width: 1100px;
+      margin: 3rem auto 0;
+    }
+    .testimonials-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 2rem;
+    }
+    .testimonial-card {
+      background: var(--bg);
+      border: 1px solid rgba(201,169,110,0.1);
+      padding: 2.5rem;
+      position: relative;
+    }
+    .testimonial-card::before {
+      content: '"';
+      position: absolute;
+      top: 1rem; left: 1.8rem;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 5rem;
+      color: var(--gold);
+      opacity: 0.18;
+      line-height: 1;
+    }
+    .testimonial-text {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.1rem;
+      font-style: italic;
+      font-weight: 300;
+      line-height: 1.7;
+      color: var(--text);
+      margin-bottom: 1.5rem;
+      opacity: 0.9;
+    }
+    .testimonial-stars {
+      display: flex;
+      gap: 3px;
+      margin-bottom: 1rem;
+    }
+    .star { color: var(--gold); font-size: 0.8rem; }
+    .testimonial-author {
+      font-size: 0.75rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    /* CONTATO */
+    .contato-grid {
+      max-width: 1100px;
+      margin: 3rem auto 0;
+      display: grid;
+      grid-template-columns: 1fr 1.4fr;
+      gap: 5rem;
+      align-items: start;
+    }
+    .contato-info-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 1rem;
+      margin-bottom: 2rem;
+    }
+    .contato-icon {
+      width: 40px;
+      height: 40px;
+      border: 1px solid rgba(201,169,110,0.25);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      color: var(--gold);
+    }
+    .contato-label {
+      font-size: 0.65rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 0.3rem;
+    }
+    .contato-value {
+      font-size: 0.9rem;
+      color: var(--text);
+      opacity: 0.8;
+      font-weight: 300;
+      line-height: 1.5;
+    }
+    .form-group { margin-bottom: 1.2rem; }
+    .form-group label {
+      display: block;
+      font-size: 0.65rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 0.5rem;
+    }
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      width: 100%;
+      background: var(--surface);
+      border: 1px solid rgba(201,169,110,0.15);
+      color: var(--text);
+      padding: 0.85rem 1rem;
+      font-family: 'Jost', sans-serif;
+      font-size: 0.88rem;
+      font-weight: 300;
+      outline: none;
+      transition: border-color 0.2s;
+      appearance: none;
+    }
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus {
+      border-color: rgba(201,169,110,0.5);
+    }
+    .form-group textarea { resize: none; height: 100px; }
+    .form-group select option { background: var(--surface); }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+    .form-success {
+      display: none;
+      padding: 1rem 1.5rem;
+      background: rgba(201,169,110,0.1);
+      border: 1px solid rgba(201,169,110,0.3);
+      color: var(--gold);
+      font-size: 0.85rem;
+      letter-spacing: 0.05em;
+      margin-top: 1rem;
+      text-align: center;
+    }
+
+    /* FOOTER */
+    footer {
+      background: #0a0907;
+      border-top: 1px solid rgba(201,169,110,0.12);
+      padding: 3rem 4rem 2rem;
+    }
+    .footer-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 2rem;
+      flex-wrap: wrap;
+    }
+    .footer-logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.4rem;
+      font-weight: 300;
+      color: var(--gold);
+      letter-spacing: 0.1em;
+    }
+    .footer-copy {
+      font-size: 0.72rem;
+      color: var(--muted);
+      letter-spacing: 0.08em;
+      opacity: 0.6;
+    }
+    .footer-social {
+      display: flex;
+      gap: 1rem;
+    }
+    .footer-social a {
+      width: 36px;
+      height: 36px;
+      border: 1px solid rgba(201,169,110,0.2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--muted);
+      text-decoration: none;
+      transition: border-color 0.2s, color 0.2s;
+    }
+    .footer-social a:hover { border-color: var(--gold); color: var(--gold); }
+
+    /* RESPONSIVE */
+    @media (max-width: 900px) {
+      section { padding: 5rem 2rem; }
+      nav { padding: 1.2rem 2rem; }
+      .nav-links, .nav-cta { display: none; }
+      .nav-mobile-toggle { display: block; }
+      .hero-circle { width: 260px; height: 260px; right: 2%; }
+      .about-grid { grid-template-columns: 1fr; gap: 3rem; }
+      .about-visual { height: 300px; }
+      .services-grid { grid-template-columns: 1fr; }
+      .team-grid { grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+      .testimonials-grid { grid-template-columns: 1fr; }
+      .contato-grid { grid-template-columns: 1fr; gap: 3rem; }
+      footer { padding: 2.5rem 2rem 1.5rem; }
+    }
+    @media (max-width: 600px) {
+      .hero-title { font-size: 2.8rem; }
+      .team-grid { grid-template-columns: 1fr; }
+      .form-row { grid-template-columns: 1fr; }
+      .footer-inner { flex-direction: column; align-items: flex-start; }
+    }
+  </style>
+  <style>body { box-sizing: border-box; }</style>
+  <script src="/_sdk/data_sdk.js" type="text/javascript"></script>
+ </head>
+ <body class="h-full">
+  <div class="site-wrapper">
+   <!-- NAV -->
+   <nav id="navbar">
+    <div class="nav-logo" id="nav-logo-text"><span>Amanda</span>
+    </div>
+    <ul class="nav-links">
+     <li><a href="#sobre">Sobre</a></li>
+     <li><a href="#servicos">Serviços</a></li>
+     <li><a href="#equipe">Equipe</a></li>
+     <li><a href="#depoimentos">Clientes</a></li>
+     <li><a href="#contato">Contato</a></li>
+    </ul><a class="nav-cta" href="#contato" id="nav-cta-btn">Agendar</a>
+    <div class="nav-mobile-toggle" onclick="openMobileMenu()">
+     <i data-lucide="menu" style="width:24px;height:24px;"></i>
+    </div>
+   </nav><!-- MOBILE MENU -->
+   <div class="nav-mobile-menu" id="mobileMenu">
+    <div class="mobile-close" onclick="closeMobileMenu()">
+     <i data-lucide="x" style="width:28px;height:28px;"></i>
+    </div><a href="#sobre" onclick="closeMobileMenu()">Sobre</a> <a href="#servicos" onclick="closeMobileMenu()">Serviços</a> <a href="#equipe" onclick="closeMobileMenu()">Equipe</a> <a href="#depoimentos" onclick="closeMobileMenu()">Clientes</a> <a href="#contato" onclick="closeMobileMenu()">Contato</a>
+   </div><!-- HERO -->
+   <section class="hero" id="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-lines"></div>
+    <div class="hero-circle"></div>
+    <div class="hero-content">
+     <span class="hero-eyebrow">Estética e Beleza Premium</span>
+     <h1 class="hero-title">Beleza que <em>transforma</em></h1>
+     <p class="hero-subtitle" id="hero-subtitle-text">Serviços especializados em coloração, cortes, design de sobrancelhas e extensão de cílios.<br>
+       Cuidado e estilo que revelam o melhor em você.</p>
+     <div class="hero-btns">
+      <a class="btn-primary" href="#contato" id="hero-cta-btn">Agendar Horário</a> <a class="btn-ghost" href="#servicos">Ver Serviços</a>
+     </div>
+    </div>
+    <div class="hero-scroll">
+     <div class="scroll-line"></div><span>Scroll</span>
+    </div>
+   </section><!-- SOBRE -->
+   <section id="sobre">
+    <div class="about-grid">
+     <div class="about-visual">
+      <div class="about-card about-card-main">
+       <div class="about-card-main-inner">
+        AS
+       </div>
+      </div>
+      <div class="about-card about-card-accent">
+       <div class="about-stat">
+        <div class="about-stat-num">
+         12+
+        </div>
+        <div class="about-stat-label">
+         Anos de experiência
+        </div>
+       </div>
+      </div>
+      <div class="about-gold-line"></div>
+     </div>
+     <div>
+      <span class="section-eyebrow">Sobre Nós</span>
+      <h2 class="section-title">Onde <em style="font-style:italic; color:var(--gold)">arte</em> e cuidado se encontram</h2>
+      <div class="section-divider"></div>
+      <p class="section-body" style="margin-bottom:1.5rem;">Amanda Simplicidade nasceu da paixão pelo cuidado autêntico. Especializada em estética e beleza, oferecemos tratamentos personalizados que valorizam a individualidade de cada cliente em um ambiente acolhedor e profissional.</p>
+      <p class="section-body" style="margin-bottom:2rem;">Nossa equipe combina técnicas atualizadas com dedicação genuína, criando resultados que destacam sua beleza natural e realçam sua confiança.</p><a class="btn-ghost" href="#contato">Fale Conosco</a>
+     </div>
+    </div>
+   </section><!-- SERVIÇOS -->
+   <section id="servicos">
+    <div style="max-width:1100px; margin:0 auto;">
+     <span class="section-eyebrow">O Que Oferecemos</span>
+     <h2 class="section-title">Nossos Serviços</h2>
+     <div class="section-divider"></div>
+    </div>
+    <div class="services-grid">
+     <div class="service-card">
+      <div class="service-icon">
+       <i data-lucide="scissors" style="width:20px;height:20px;"></i>
+      </div>
+      <div class="service-name">
+       Coloração
+      </div>
+      <p class="service-desc">Técnicas de coloração que realçam sua beleza com produtos de qualidade. Resultados vibrantes e saudáveis.</p>
+      <div class="service-price">
+       R$ 50
+      </div>
+     </div>
+     <div class="service-card">
+      <div class="service-icon">
+       <i data-lucide="scissors" style="width:20px;height:20px;"></i>
+      </div>
+      <div class="service-name">
+       Corte
+      </div>
+      <p class="service-desc">Cortes precisos e personalizados para cada estilo e formato de rosto.</p>
+      <div class="service-price">
+       R$ 25
+      </div>
+     </div>
+     <div class="service-card">
+      <div class="service-icon">
+       <i data-lucide="scissors" style="width:20px;height:20px;"></i>
+      </div>
+      <div class="service-name">
+       Escova
+      </div>
+      <p class="service-desc">Escova para valorizar seu visual no dia a dia ou em ocasiões especiais.</p>
+      <div class="service-price">
+       A partir de R$ 25
+      </div>
+     </div>
+     <div class="service-card">
+      <div class="service-icon">
+       <i data-lucide="sparkles" style="width:20px;height:20px;"></i>
+      </div>
+      <div class="service-name">
+       Selagem
+      </div>
+      <p class="service-desc">Selagem capilar para hidratação profunda e recuperação dos fios.</p>
+      <div class="service-price">
+       A partir de R$ 150
+      </div>
+     </div>
+     <div class="service-card">
+      <div class="service-icon">
+       <i data-lucide="sparkles" style="width:20px;height:20px;"></i>
+      </div>
+      <div class="service-name">
+       Mechas
+      </div>
+      <p class="service-desc">Mechas e técnicas de iluminação que realçam e renovam seu visual.</p>
+      <div class="service-price">
+       A partir de R$ 150
+      </div>
+     </div>
+     <div class="service-card">
+      <div class="service-icon">
+       <i data-lucide="heart" style="width:20px;height:20px;"></i>
+      </div>
+      <div class="service-name">
+       Micropigmentação
+      </div>
+      <p class="service-desc">Design e micropigmentação de sobrancelhas com resultados naturais e duradouros.</p>
+      <div class="service-price">
+       R$ 250
+      </div>
+     </div>
+     <div class="service-card">
+      <div class="service-icon">
+       <i data-lucide="star" style="width:20px;height:20px;"></i>
+      </div>
+      <div class="service-name">
+       Extensão de Cílios
+      </div>
+      <p class="service-desc">Extensão de cílios para olhar mais expressivo e volume permanente.</p>
+      <div class="service-price">
+       R$ 70
+      </div>
+     </div>
+    </div>
+   </section><!-- EQUIPE -->
+   <section id="equipe">
+    <div class="team-header">
+     <span class="section-eyebrow">Profissionais</span>
+     <h2 class="section-title">Nossa Equipe</h2>
+     <div class="section-divider" style="margin: 0 auto;"></div>
+    </div>
+    <div class="team-grid" style="grid-template-columns: 1fr; max-width: 400px; margin: 0 auto;">
+     <div class="team-card">
+      <div class="team-photo">
+       <div class="team-photo-inner">
+        ✦
+       </div>
+       <div class="team-photo-overlay"></div>
+      </div>
+      <div class="team-name">
+       Amanda Simplício
+      </div>
+      <div class="team-role">
+       Proprietária &amp; Especialista
+      </div>
+     </div>
+    </div>
+   </section><!-- DEPOIMENTOS -->
+   <section id="depoimentos">
+    <div class="testimonials-inner">
+     <span class="section-eyebrow">Clientes Satisfeitas</span>
+     <h2 class="section-title">O Que Dizem</h2>
+     <div class="section-divider"></div>
+     <div class="testimonials-grid">
+      <div class="testimonial-card">
+       <div class="testimonial-stars">
+        <span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span>
+       </div>
+       <p class="testimonial-text">"Adorei o resultado! Amanda é muito profissional e atenciosa. Saí com uma coloração linda e bem cuidada."</p>
+       <div class="testimonial-author">
+        — Beatriz
+       </div>
+      </div>
+      <div class="testimonial-card">
+       <div class="testimonial-stars">
+        <span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span>
+       </div>
+       <p class="testimonial-text">"Fiz a extensão de cílios e ficou maravilhoso! Super recomendo. O ambiente é limpo e acolhedor."</p>
+       <div class="testimonial-author">
+        — Camila
+       </div>
+      </div>
+      <div class="testimonial-card">
+       <div class="testimonial-stars">
+        <span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span>
+       </div>
+       <p class="testimonial-text">"Micropigmentação perfeita! Amanda tem um olho apurado e fez exatamente como queria."</p>
+       <div class="testimonial-author">
+        — Fernanda
+       </div>
+      </div>
+      <div class="testimonial-card">
+       <div class="testimonial-stars">
+        <span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span>
+       </div>
+       <p class="testimonial-text">"Meu corte ficou lindo! Técnica impecável e um preço justo. Voltarei com certeza!"</p>
+       <div class="testimonial-author">
+        — Liliana
+       </div>
+      </div>
+     </div>
+    </div>
+   </section><!-- CONTATO -->
+   <section id="contato">
+    <div style="max-width:1100px; margin:0 auto;">
+     <span class="section-eyebrow">Fale Conosco</span>
+     <h2 class="section-title">Agende sua Visita</h2>
+     <div class="section-divider"></div>
+    </div>
+    <div class="contato-grid">
+     <div>
+      <div class="contato-info-item">
+       <div class="contato-icon">
+        <i data-lucide="phone" style="width:18px;height:18px;"></i>
+       </div>
+       <div>
+        <div class="contato-label">
+         Telefone / WhatsApp
+        </div>
+        <div class="contato-value" id="contact-phone">
+         (83) 9 9999-9999
+        </div>
+       </div>
+      </div>
+      <div class="contato-info-item">
+       <div class="contato-icon">
+        <i data-lucide="map-pin" style="width:18px;height:18px;"></i>
+       </div>
+       <div>
+        <div class="contato-label">
+         Endereço
+        </div>
+        <div class="contato-value" id="contact-address">
+         Campina Grande — PB
+        </div>
+       </div>
+      </div>
+      <div class="contato-info-item">
+       <div class="contato-icon">
+        <i data-lucide="instagram" style="width:18px;height:18px;"></i>
+       </div>
+       <div>
+        <div class="contato-label">
+         Instagram
+        </div>
+        <div class="contato-value" id="contact-instagram">
+         @amandasimplicioesteticaebeleza
+        </div>
+       </div>
+      </div>
+     </div>
+     <div>
+      <form id="agendamento-form" onsubmit="handleFormSubmit(event)">
+       <div class="form-row">
+        <div class="form-group">
+         <label for="f-nome">Nome</label> <input type="text" id="f-nome" placeholder="Seu nome" required>
+        </div>
+        <div class="form-group">
+         <label for="f-tel">Telefone</label> <input type="tel" id="f-tel" placeholder="(11) 9 9999-9999" required>
+        </div>
+       </div>
+       <div class="form-group">
+        <label for="f-servico">Serviço desejado</label> <select id="f-servico" required> <option value="">Selecione um serviço</option> <option>Corte &amp; Estilo</option> <option>Coloração</option> <option>Tratamentos Capilares</option> <option>Maquiagem</option> <option>Sobrancelhas</option> <option>Spa Capilar</option> </select>
+       </div>
+       <div class="form-row">
+        <div class="form-group">
+         <label for="f-data">Data preferida</label> <input type="date" id="f-data" required>
+        </div>
+        <div class="form-group">
+         <label for="f-hora">Horário</label> <select id="f-hora" required> <option value="">Horário</option> <option>09:00</option><option>10:00</option><option>11:00</option> <option>13:00</option><option>14:00</option><option>15:00</option> <option>16:00</option><option>17:00</option><option>18:00</option> </select>
+        </div>
+       </div>
+       <div class="form-group">
+        <label for="f-obs">Observações (opcional)</label> <textarea id="f-obs" placeholder="Descreva o que você deseja..."></textarea>
+       </div><button type="submit" class="btn-primary" style="width:100%; border:none; cursor:pointer; font-family:'Jost',sans-serif;" id="submit-btn"> Enviar Solicitação </button>
+       <div class="form-success" id="form-success">
+        ✦ Solicitação enviada com sucesso! Entraremos em contato em breve.
+       </div>
+      </form>
+     </div>
+    </div>
+   </section><!-- FOOTER -->
+   <footer>
+    <div class="footer-inner">
+     <div class="footer-logo" id="footer-logo-text">
+      Amanda Simplício
+     </div>
+     <div class="footer-copy">
+      © 2024 Amanda Simplício Estética e Beleza. Todos os direitos reservados.
+     </div>
+     <div class="footer-social">
+      <a href="#" aria-label="Instagram"> <i data-lucide="instagram" style="width:16px;height:16px;"></i> </a> <a href="#" aria-label="Facebook"> <i data-lucide="facebook" style="width:16px;height:16px;"></i> </a> <a href="#" aria-label="WhatsApp"> <i data-lucide="phone" style="width:16px;height:16px;"></i> </a>
+     </div>
+    </div>
+   </footer>
+  </div>
+  <script>
+  lucide.createIcons();
+
+  // NAV SCROLL
+  const navbar = document.getElementById('navbar');
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 60) navbar.classList.add('scrolled');
+    else navbar.classList.remove('scrolled');
+  });
+
+  // MOBILE MENU
+  function openMobileMenu() {
+    document.getElementById('mobileMenu').classList.add('open');
+  }
+  function closeMobileMenu() {
+    document.getElementById('mobileMenu').classList.remove('open');
+  }
+
+  // FORM
+  function handleFormSubmit(e) {
+    e.preventDefault();
+    const btn = document.getElementById('submit-btn');
+    btn.textContent = 'Enviando...';
+    btn.disabled = true;
+    setTimeout(() => {
+      document.getElementById('form-success').style.display = 'block';
+      document.getElementById('agendamento-form').reset();
+      btn.textContent = 'Enviar Solicitação';
+      btn.disabled = false;
+    }, 1200);
+  }
+
+  // ELEMENT SDK
+  const defaultConfig = {
+    salon_name: 'Amanda Simplício',
+    tagline: 'Beleza que transforma',
+    phone: '(83) 9 9999-9999',
+    address: 'Campina Grande, PB',
+    instagram: '@amandasimplicioesteticaebeleza',
+    cta_button: 'Agendar Horário',
+    background_color: '#0f0d0c',
+    surface_color: '#1c1917',
+    text_color: '#f0ebe3',
+    accent_color: '#c9a96e',
+    muted_color: '#8a7f74',
+    font_family: 'Cormorant Garamond',
+    font_size: 16
+  };
+
+  window.elementSdk && window.elementSdk.init({
+    defaultConfig,
+    onConfigChange: async (config) => {
+      const salonName = config.salon_name || defaultConfig.salon_name;
+      const tagline = config.tagline || defaultConfig.tagline;
+      const phone = config.phone || defaultConfig.phone;
+      const address = config.address || defaultConfig.address;
+      const instagram = config.instagram || defaultConfig.instagram;
+      const cta = config.cta_button || defaultConfig.cta_button;
+
+      document.getElementById('nav-logo-text').innerHTML = `<span>${salonName.split(' ')[0]}</span>`;
+      document.getElementById('footer-logo-text').textContent = salonName;
+
+      const heroTitle = document.querySelector('.hero-title');
+      if (heroTitle) {
+        const parts = tagline.split(' ');
+        const last = parts.pop();
+        heroTitle.innerHTML = `${parts.join(' ')} <em>${last}</em>`;
+      }
+
+      document.getElementById('hero-cta-btn').textContent = cta;
+      document.getElementById('nav-cta-btn').textContent = 'Agendar';
+      document.getElementById('contact-phone').textContent = phone;
+      document.getElementById('contact-address').innerHTML = address;
+      document.getElementById('contact-instagram').textContent = instagram;
+
+      const bg = config.background_color || defaultConfig.background_color;
+      const surface = config.surface_color || defaultConfig.surface_color;
+      const text = config.text_color || defaultConfig.text_color;
+      const accent = config.accent_color || defaultConfig.accent_color;
+      const muted = config.muted_color || defaultConfig.muted_color;
+
+      document.documentElement.style.setProperty('--bg', bg);
+      document.documentElement.style.setProperty('--surface', surface);
+      document.documentElement.style.setProperty('--text', text);
+      document.documentElement.style.setProperty('--gold', accent);
+      document.documentElement.style.setProperty('--gold-light', accent);
+      document.documentElement.style.setProperty('--muted', muted);
+
+      const font = config.font_family || defaultConfig.font_family;
+      const size = config.font_size || defaultConfig.font_size;
+      document.querySelectorAll('h1,h2,h3,.serif,.hero-title,.section-title,.team-name,.service-name,.nav-logo,.footer-logo,.testimonial-text').forEach(el => {
+        el.style.fontFamily = `'${font}', Georgia, serif`;
+        el.style.fontSize = '';
+      });
+      document.querySelector('.hero-title').style.fontSize = `${size * 3.5}px`;
+      document.querySelector('.hero-subtitle').style.fontSize = `${size * 0.9}px`;
+    },
+    mapToCapabilities: (config) => ({
+      recolorables: [
+        {
+          get: () => config.background_color || defaultConfig.background_color,
+          set: (v) => { config.background_color = v; window.elementSdk.setConfig({ background_color: v }); }
+        },
+        {
+          get: () => config.surface_color || defaultConfig.surface_color,
+          set: (v) => { config.surface_color = v; window.elementSdk.setConfig({ surface_color: v }); }
+        },
+        {
+          get: () => config.text_color || defaultConfig.text_color,
+          set: (v) => { config.text_color = v; window.elementSdk.setConfig({ text_color: v }); }
+        },
+        {
+          get: () => config.accent_color || defaultConfig.accent_color,
+          set: (v) => { config.accent_color = v; window.elementSdk.setConfig({ accent_color: v }); }
+        },
+        {
+          get: () => config.muted_color || defaultConfig.muted_color,
+          set: (v) => { config.muted_color = v; window.elementSdk.setConfig({ muted_color: v }); }
+        }
+      ],
+      borderables: [],
+      fontEditable: {
+        get: () => config.font_family || defaultConfig.font_family,
+        set: (v) => { config.font_family = v; window.elementSdk.setConfig({ font_family: v }); }
+      },
+      fontSizeable: {
+        get: () => config.font_size || defaultConfig.font_size,
+        set: (v) => { config.font_size = v; window.elementSdk.setConfig({ font_size: v }); }
+      }
+    }),
+    mapToEditPanelValues: (config) => new Map([
+      ['salon_name', config.salon_name || defaultConfig.salon_name],
+      ['tagline', config.tagline || defaultConfig.tagline],
+      ['phone', config.phone || defaultConfig.phone],
+      ['address', config.address || defaultConfig.address],
+      ['instagram', config.instagram || defaultConfig.instagram],
+      ['cta_button', config.cta_button || defaultConfig.cta_button]
+    ])
+  });
+</script>
+ <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9e19ccca04256f7f',t:'MTc3NDM5ODU1Mi4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>
