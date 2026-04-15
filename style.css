@@ -1,0 +1,13 @@
+#chat-bot{
+position: fixed;
+bottom: 20px;
+right: 20px;
+}
+
+#chat-bot button{
+background: black;
+color: white;
+padding: 15px;
+border-radius: 30px;
+cursor: pointer;
+}
