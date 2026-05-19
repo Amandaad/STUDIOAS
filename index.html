@@ -981,9 +981,9 @@
        </div>
        <div class="form-group">
         <label for="f-obs">Observações (opcional)</label> <textarea id="f-obs" placeholder="Descreva o que você deseja..."></textarea>
-       </div><button type="submit" class="btn-primary" style="width:100%; border:none; cursor:pointer; font-family:'Jost',sans-serif;" id="submit-btn"> Enviar Solicitação </button>
+       </div><button type="submit" class="btn-primary" style="width:100%; border:none; cursor:pointer; font-family:'Jost',sans-serif;" id="submit-btn"> Agendar no Google Agenda </button>
        <div class="form-success" id="form-success">
-        ✦ Solicitação enviada com sucesso! Entraremos em contato em breve.
+        Agendamento criado. Finalize no Google Agenda na aba que abriu.
        </div>
       </form>
      </div>
@@ -1031,15 +1031,53 @@
   // FORM
   function handleFormSubmit(e) {
     e.preventDefault();
+    const nome = document.getElementById('f-nome').value.trim();
+    const telefone = document.getElementById('f-tel').value.trim();
+    const servico = document.getElementById('f-servico').value;
+    const data = document.getElementById('f-data').value;
+    const hora = document.getElementById('f-hora').value;
+    const obs = document.getElementById('f-obs').value.trim();
     const btn = document.getElementById('submit-btn');
-    btn.textContent = 'Enviando...';
+    const success = document.getElementById('form-success');
+
+    if (!nome || !telefone || !servico || !data || !hora) return;
+
+    btn.textContent = 'Abrindo Google Agenda...';
     btn.disabled = true;
-    setTimeout(() => {
-      document.getElementById('form-success').style.display = 'block';
-      document.getElementById('agendamento-form').reset();
-      btn.textContent = 'Enviar Solicitação';
-      btn.disabled = false;
-    }, 1200);
+
+    const inicioLocal = new Date(`${data}T${hora}:00`);
+    const fimLocal = new Date(inicioLocal.getTime() + 60 * 60 * 1000);
+
+    const formatGoogleDate = (d) => {
+      const yyyy = d.getUTCFullYear();
+      const mm = String(d.getUTCMonth() + 1).padStart(2, '0');
+      const dd = String(d.getUTCDate()).padStart(2, '0');
+      const hh = String(d.getUTCHours()).padStart(2, '0');
+      const mi = String(d.getUTCMinutes()).padStart(2, '0');
+      const ss = String(d.getUTCSeconds()).padStart(2, '0');
+      return `${yyyy}${mm}${dd}T${hh}${mi}${ss}Z`;
+    };
+
+    const titulo = `Agendamento - ${servico}`;
+    const detalhes = [
+      `Cliente: ${nome}`,
+      `Telefone: ${telefone}`,
+      obs ? `Observacoes: ${obs}` : ''
+    ].filter(Boolean).join('\n');
+
+    const url = new URL('https://calendar.google.com/calendar/render');
+    url.searchParams.set('action', 'TEMPLATE');
+    url.searchParams.set('text', titulo);
+    url.searchParams.set('dates', `${formatGoogleDate(inicioLocal)}/${formatGoogleDate(fimLocal)}`);
+    url.searchParams.set('details', detalhes);
+    url.searchParams.set('location', 'Studio As - Campina Grande/PB');
+
+    window.open(url.toString(), '_blank');
+
+    success.style.display = 'block';
+    document.getElementById('agendamento-form').reset();
+    btn.textContent = 'Agendar no Google Agenda';
+    btn.disabled = false;
   }
 
   // ELEMENT SDK
